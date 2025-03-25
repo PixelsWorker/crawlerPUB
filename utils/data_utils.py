@@ -12,7 +12,6 @@ def save_venues_to_csv(venues: list, filename: str):
         print("No venues to save.")
         return
 
-    # Use field names from the Venue model
     fieldnames = Venue.model_fields.keys()
     try:
         with open(filename, mode="w", newline="", encoding="utf-8") as file:

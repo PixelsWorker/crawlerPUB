@@ -1,10 +1,7 @@
-# config.py
 
-# Base URL for AssamCareer.com (the first page)
 BASE_URL = "https://www.assamcareer.com"
 
-# CSS Selector to target each job post item within the "widget Blog" container.
-# (Adjust this selector based on the actual page structure.)
+
 CSS_SELECTOR = ".widget.Blog .post-outer"
 
 # Required keys for the extracted data.

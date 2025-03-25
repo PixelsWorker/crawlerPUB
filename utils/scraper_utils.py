@@ -25,9 +25,8 @@ def get_browser_config() -> BrowserConfig:
     )
 
 def get_llm_strategy() -> LLMExtractionStrategy:
-    # Updated instruction to include jump_link field.
     return LLMExtractionStrategy(
-        provider="openrouter/deepseek/deepseek-r1:free",  # Use the correct provider string
+        provider="openrouter/deepseek/deepseek-r1:free", 
         api_token=os.getenv("OPENROUTER_API_KEY"),
         schema=Venue.model_json_schema(),
         extraction_type="schema",
@@ -39,7 +38,7 @@ def get_llm_strategy() -> LLMExtractionStrategy:
             "- jump_link: the URL of the jump-link from the element (if available)\n"
             "Return the result as JSON."
         ),
-        input_format="html",  # Using HTML input for extraction
+        input_format="html", 
         verbose=True,
     )
 
@@ -62,7 +61,6 @@ def extract_next_page_url(cleaned_html: str) -> Optional[str]:
             if next_link and next_link.has_attr("href"):
                 return next_link["href"]
     else:
-        # Fallback: try to extract the next page URL even if status-msg-body is not found.
         next_link = soup.find("a", class_="blog-pager-older-link")
         if next_link and next_link.has_attr("href"):
             return next_link["href"]
@@ -116,13 +114,11 @@ async def fetch_and_process_page(
             item.pop("error", None)
         if not is_complete_venue(item, required_keys):
             continue
-        # Use "post_title" for duplicate checking
         if is_duplicate_venue(item["post_title"], seen_titles):
             print(f"Duplicate item '{item['post_title']}' found. Skipping.")
             continue
         seen_titles.add(item["post_title"])
 
-        # If a jump_link is present, fetch the table data from that page
         jump_link = item.get("jump_link", "").strip()
         if jump_link:
             print(f"Fetching jump link table from: {jump_link}")
@@ -136,7 +132,6 @@ async def fetch_and_process_page(
     if not complete_items:
         print("No complete items found on the page.")
 
-    # Now, extract the next page URL from the page's HTML using the new function.
     next_page_url = extract_next_page_url(result.cleaned_html)
     if next_page_url:
         print(f"Next page URL extracted: {next_page_url}")
@@ -165,7 +160,6 @@ async def fetch_jump_link_table(jump_url: str) -> List[dict]:
         table = soup.find("table", class_="tablepress")
         if table:
             rows = table.find_all("tr")
-            # If the first row is header (contains <th>), skip it.
             if rows and rows[0].find_all("th"):
                 rows = rows[1:]
             for row in rows:

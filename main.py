@@ -20,8 +20,8 @@ async def crawl_items():
 
     all_items = []
     seen_titles = set()
-    current_url = BASE_URL  # Start at the base URL (page 1)
-    page_count = 0  # Initialize page counter
+    current_url = BASE_URL  
+    page_count = 0  
 
     async with AsyncWebCrawler(config=browser_config) as crawler:
         while current_url and page_count < 10:
@@ -39,12 +39,12 @@ async def crawl_items():
                 print(f"No items extracted from {current_url}. Ending crawl.")
                 break
             all_items.extend(items)
-            page_count += 1  # Increment the page counter
+            page_count += 1  
             if not next_page_url:
                 print("No further pages found. Ending crawl.")
                 break
             current_url = next_page_url
-            await asyncio.sleep(2)  # Pause between pages
+            await asyncio.sleep(2)  
 
     if all_items:
         save_venues_to_csv(all_items, "assamcareer_items.csv")
