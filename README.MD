@@ -32,3 +32,8 @@ python main.py
 i am working on extract_next_page_url (not done yet)
 
 ![plot](./Capture.PNG)
+
+
+## AI key
+
+if need AI Api key openrouter given then for free
