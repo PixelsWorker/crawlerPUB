@@ -29,11 +29,11 @@ This project is a web crawler built with Python that extracts venue data from a 
 
 python main.py
 
-i am working on extract_next_page_url (not done yet)
+I am working on extract_next_page_url (not done yet).
 
 ![plot](./Capture.PNG)
 
 
 ## AI key
 
-if you need AI Api key, openrouter given them for free
+If you need an AI API key, openrouter gives them for free.
