@@ -110,6 +110,7 @@ async def fetch_and_process_page(
     if not extracted_data:
         print("No items found on the page.")
         return [], None
+    print("Cleaned HTML snippet:", result.cleaned_html[:1000])
     print("Extracted data:", extracted_data)
     complete_items = []
     for item in extracted_data:
