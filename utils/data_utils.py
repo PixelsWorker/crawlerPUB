@@ -11,7 +11,6 @@ def save_venues_to_csv(venues: list, filename: str):
     if not venues:
         print("No venues to save.")
         return
-
     fieldnames = Venue.model_fields.keys()
     try:
         with open(filename, mode="w", newline="", encoding="utf-8") as file:
@@ -20,4 +19,4 @@ def save_venues_to_csv(venues: list, filename: str):
             writer.writerows(venues)
         print(f"Saved {len(venues)} venues to '{filename}'.")
     except PermissionError as e:
-        print(f"PermissionError: {e}. Check if the file is open or if you have write permission.")
+        print(f"PermissionError: {e}. Please ensure the file is not open or change the output path.")
