@@ -1,5 +1,5 @@
 import asyncio
-from typing import Tuple  # Ensure Tuple is imported
+from typing import Tuple  
 from crawl4ai import AsyncWebCrawler
 from dotenv import load_dotenv
 
@@ -55,7 +55,6 @@ async def crawl_multiple_urls():
         print(f"[INFO] Saved {len(all_results)} items to 'assamcareer_items.csv'.")
     else:
         print("[INFO] No items were found during the crawl.")
-    # Save debug information to a separate CSV file.
     save_debug_csv(DEBUG_RECORDS, "assamcareer_debug.csv")
 
 async def main():
